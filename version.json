@@ -1,0 +1,6 @@
+{
+  "version": "0.4.8-Alpha",
+  "url_mac":   "https://github.com/frankvschrenk/xium/releases/download/0.4.8-Alpha/xos-darwin-universal",
+  "url_linux": "https://github.com/frankvschrenk/xium/releases/download/0.4.8-Alpha/xos-linux-amd64",
+  "url_win":   "https://github.com/frankvschrenk/xium/releases/download/0.4.8-Alpha/xos-windows-amd64.exe"
+}

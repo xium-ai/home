@@ -1,0 +1,6 @@
+# Videos zu groß für GitHub — über CDN oder Git LFS hosten
+*.mp4
+*.mov
+*.avi
+
+.DS_Store
