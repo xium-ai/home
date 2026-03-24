@@ -216,13 +216,13 @@ layout: null
     <button class="modal-close" onclick="closeModal()">×</button>
     <div id="modal-video-de">
       <video controls>
-        <source src="https://github.com/xium-ai/home/releases/latest/download/xium_de.mp4" type="video/mp4">
+        <source src="xos_de.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
     <div id="modal-video-en">
       <video controls>
-        <source src="https://github.com/xium-ai/home/releases/latest/download/xium_en.mp4" type="video/mp4">
+        <source src="xos_en.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
@@ -292,16 +292,16 @@ layout: null
 
   <div class="use-cases">
     <div class="use-case">
-      <img src="https://raw.githubusercontent.com/xium-ai/home/main/XiumOS_Larger.png" alt="Larger Company Architecture">
+      <img src="XiumOS_Larger.png" alt="Larger Company Architecture">
       <div class="use-case-content">
         <div class="use-case-header">
           <div class="use-case-icon">🏢</div>
           <div>
-            <h3 data-de="Größeres Unternehmen" data-en="Larger Company">Größeres Unternehmen</h3>
-            <p class="use-case-sub" data-de="Kubernetes · Multi-Instance · WebSocket" data-en="Kubernetes · Multi-Instance · WebSocket">Kubernetes · Multi-Instance · WebSocket</p>
+            <h3 data-de="Größeres Unternehmen" data-en="Enterprise">Größeres Unternehmen</h3>
+            <p class="use-case-sub" data-de="Nur Unternehmensnetzwerk · Kubernetes · Multi-Instance · MCP" data-en="Corporate Network Only · Kubernetes · Multi-Instance · MCP">Nur Unternehmensnetzwerk · Kubernetes · Multi-Instance · MCP</p>
           </div>
         </div>
-        <p class="use-case-desc" data-de="Mehrere XOS-Instanzen laufen im Kubernetes-Cluster — skalierbar, hochverfügbar und mandantenfähig. Die sichere WebSocket-Verbindung zwischen Workstation und Unternehmensinfrastruktur stellt sicher, dass kein Daten-Byte das Netzwerk verlässt." data-en="Multiple XOS instances run in the Kubernetes cluster — scalable, highly available, and multi-tenant capable. The secure WebSocket connection between workstation and enterprise infrastructure ensures that no data byte leaves the network.">Mehrere XOS-Instanzen laufen im Kubernetes-Cluster — skalierbar, hochverfügbar und mandantenfähig. Die sichere WebSocket-Verbindung zwischen Workstation und Unternehmensinfrastruktur stellt sicher, dass kein Daten-Byte das Netzwerk verlässt.</p>
+        <p class="use-case-desc" data-de="Ausschließlich im Unternehmensnetzwerk. Mehrere XOS-Instanzen laufen im Kubernetes-Cluster — skalierbar, hochverfügbar und mandantenfähig. XOS und XOSP kommunizieren über das MCP HTTP Streamable Protokoll — kontrolliert, protokolliert, kein Daten-Byte verlässt das Netzwerk." data-en="Exclusively within the corporate network. Multiple XOS instances run in the Kubernetes cluster — scalable, highly available, and multi-tenant capable. XOS and XOSP communicate via the MCP HTTP Streamable protocol — controlled, logged, not a single byte of data ever leaves the network.">Ausschließlich im Unternehmensnetzwerk. Mehrere XOS-Instanzen laufen im Kubernetes-Cluster — skalierbar, hochverfügbar und mandantenfähig. XOS und XOSP kommunizieren über das MCP HTTP Streamable Protokoll — kontrolliert, protokolliert, kein Daten-Byte verlässt das Netzwerk.</p>
       </div>
     </div>
   </div>
@@ -438,7 +438,7 @@ layout: null
     <div class="ast-sources">
       <div class="ast-source"><div class="ast-source-icon">🗄️</div><div><div class="ast-source-label">Databases</div><div class="ast-source-desc">PostgreSQL, MySQL, MongoDB</div></div></div>
       <div class="ast-source"><div class="ast-source-icon">🌐</div><div><div class="ast-source-label">REST APIs</div><div class="ast-source-desc" data-de="Beliebige externe Dienste" data-en="Any external services">Beliebige externe Dienste</div></div></div>
-      <div class="ast-source"><div class="ast-source-icon">📡</div><div><div class="ast-source-label">Event Streaming</div><div class="ast-source-desc">Kafka, WebSockets, SSE</div></div></div>
+      <div class="ast-source"><div class="ast-source-icon">📡</div><div><div class="ast-source-label">Event Streaming</div><div class="ast-source-desc">Kafka, SSE, MCP HTTP Streamable</div></div></div>
       <div class="ast-source"><div class="ast-source-icon">✉️</div><div><div class="ast-source-label" data-de="Kommunikation" data-en="Communication">Kommunikation</div><div class="ast-source-desc">E-Mail, CardDAV, CalDAV</div></div></div>
       <div class="ast-source"><div class="ast-source-icon">☸️</div><div><div class="ast-source-label">Infrastructure</div><div class="ast-source-desc">Kubernetes, Server, Cloud</div></div></div>
     </div>
@@ -485,8 +485,10 @@ layout: null
   }
   function closeModal() {
     document.getElementById('demoModal').classList.remove('open');
-    const v = document.querySelector('#demoModal video');
-    if (v) v.pause();
+    document.querySelectorAll('#demoModal video').forEach(v => {
+      v.pause();
+      v.currentTime = 0;
+    });
   }
   document.getElementById('demoModal').addEventListener('click', function(e) {
     if (e.target === this) closeModal();
